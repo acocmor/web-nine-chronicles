@@ -29,6 +29,7 @@ class DataController extends Controller
         }
         $respone["AllowedVersions"] = $ver;
         $respone["DiceRoll"] = $server->diceroll;
+        $respone["TrialPremium"] = $server->TrialPremium;
         $respone["Guilds"] = $guilds;  
         $respone["GuildPlayers"] = $guildPlayers;  
         $respone["Players"] = Player::all();
