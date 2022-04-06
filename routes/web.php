@@ -32,6 +32,30 @@ Route::prefix('/')->middleware('admin')->group(function () {
     Route::post('/edit/{id}', [App\Http\Controllers\PlayerController::class, 'postEdit'])->name('postEdit');
 
     Route::get('/delete/{id}', [App\Http\Controllers\PlayerController::class, 'delete'])->name('delete');
+
+    Route::prefix('guild')->group(function () {
+        Route::get('/', [App\Http\Controllers\GuildController::class, 'index'])->name('guild.index');
+
+        Route::get('/add', [App\Http\Controllers\GuildController::class, 'add'])->name('guild.add');
+        Route::post('/add', [App\Http\Controllers\GuildController::class, 'postAdd'])->name('guild.postAdd');
+
+        Route::get('/edit/{id}', [App\Http\Controllers\GuildController::class, 'edit'])->name('guild.edit');
+        Route::post('/edit/{id}', [App\Http\Controllers\GuildController::class, 'postEdit'])->name('guild.postEdit');
+
+        Route::get('/delete/{id}', [App\Http\Controllers\GuildController::class, 'delete'])->name('guild.delete');
+    });
+
+    Route::prefix('guild-player')->group(function () {
+        Route::get('/', [App\Http\Controllers\GuildPlayerController::class, 'index'])->name('guildPlayer.index');
+
+        Route::get('/add', [App\Http\Controllers\GuildController::class, 'add'])->name('guildPlayer.add');
+        Route::post('/add', [App\Http\Controllers\GuildPlayerController::class, 'postAdd'])->name('guildPlayer.postAdd');
+
+        Route::get('/edit/{id}', [App\Http\Controllers\GuildPlayerController::class, 'edit'])->name('guildPlayer.edit');
+        Route::post('/edit/{id}', [App\Http\Controllers\GuildPlayerController::class, 'postEdit'])->name('guildPlayer.postEdit');
+
+        Route::get('/delete/{id}', [App\Http\Controllers\GuildPlayerController::class, 'delete'])->name('guildPlayer.delete');
+    });
 });
 
 Route::get('/login', [App\Http\Controllers\PlayerController::class, 'login'])->name('login');

@@ -47,11 +47,12 @@
                 <div class="col-12">   
                     <div class="card">
                       <div class="card-header">
-                        <h3 class="card-title">DiceRoll Server</h3>
+                        <h3 class="card-title">Settings Server</h3>
                       </div>
                       <!-- /.card-header -->
                       <div class="card-body">
                         <h3>DiceRoll Server Now: <span style="color: red; font-size:24px; font-weight:bold; padding-left:15px">{{$list->diceroll}}</span></h3>
+                        <h3>TrialPremium Server Now: <span style="color: red; font-size:24px; font-weight:bold; padding-left:15px">{{$list->TrialPremium}}</span></h3>
                         <div class="row">
                             <div class="col-12">
                                 <form action="{{route('postServer')}}" method="POST">
@@ -60,6 +61,10 @@
                                       <div class="form-group">
                                         <label for="diceroll">Thay đổi DiceRoll  <span style="color:red;">*</span></label>
                                         <input type="number" class="form-control" id="diceroll" name="diceroll" placeholder="DiceRoll..." value="{{$list->diceroll}}">
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="trialPremium">Thay đổi TrialPremium  <span style="color:red;">*</span></label>
+                                        <input type="number" class="form-control" id="trialPremium" name="trialPremium" placeholder="TrialPremium..." value="{{$list->TrialPremium}}">
                                       </div>
                                     </div>
                                     <div class="card-footer">

@@ -25,20 +25,26 @@ class ServerController extends Controller
     public function postServer(Request $request) {
         $this->validate($request,[
             'diceroll' => 'required|numeric|min:0|max:100',
+            'trialPremium' => 'required|numeric|min:0',
         ], [
             'diceroll.required' => 'Giá trị diceroll từ 0 -> 100',
             'diceroll.numeric' => 'DiceRoll sai định dạng',
             'diceroll.min' => 'Giá trị diceroll từ 0 -> 100',
             'diceroll.max' => 'Giá trị diceroll từ 0 -> 100',
+            'trialPremium.required' => 'Giá trị trial premium > 0',
+            'trialPremium.numeric' => 'Giá trị trial premium > 0',
+            'trialPremium.min' => 'Giá trị trial premium > 0',
         ]);
 
         $server = Server::find(1);
         if($server == null) {
             $server = new Server();
             $server->diceroll = $request->diceroll;
+            $server->TrialPremium = $request->trialPremium;
             $server->save();
         } else {
             $server->diceroll = $request->diceroll;
+            $server->TrialPremium = $request->trialPremium;
             $server->update();
         }
         return redirect()->back()->with('thongbao', "Thay đổi DiceRoll thành công!");

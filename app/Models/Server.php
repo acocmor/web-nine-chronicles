@@ -13,5 +13,6 @@ class Server extends Model
 
     protected $fillable = [
         'diceroll',
+        'TrialPremium',
     ];
 }
