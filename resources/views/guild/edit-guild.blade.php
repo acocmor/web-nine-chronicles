@@ -60,7 +60,7 @@
                             <!-- /.card-header -->
                             <!-- form start -->
                             @if(isset($guild))
-                            <form action="{{route('guild.postEdit', ['id' => $guild->id])}}" method="POST">
+                            <form action="{{route('guild.postEdit', ['id' => $guild->id])}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
                                 <div class="form-group">
@@ -116,6 +116,12 @@
                                         </div>
                                         <!-- /.form-group -->
                                     </div> 
+                                </div>
+
+                      
+                                <div class="form-group">
+                                    <label for="image">Image <span style="color:red;">*</span></label>
+                                    <input type="file" class="form-control" id="image" name="image">
                                 </div>
                             
                                 <!-- /.card-body -->

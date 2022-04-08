@@ -62,6 +62,7 @@ Route::get('/login', [App\Http\Controllers\PlayerController::class, 'login'])->n
 Route::post('/login', [App\Http\Controllers\PlayerController::class, 'postLogin'])->name('post.login');
 
 Route::get('/data', [App\Http\Controllers\DataController::class, 'get'])->name('data');
+Route::get('/Guilds/{png}', [App\Http\Controllers\DataController::class, 'getImageGuild'])->name('imgGuild');
 //Route::get('/data?p={random}', [App\Http\Controllers\DataController::class, 'get2'])->name('data2');
 
 

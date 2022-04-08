@@ -11,10 +11,8 @@ class Guild extends Model
     public $timestamps = false;
     protected $table = 'guilds';
     protected $hidden = [
-        'id'
+        'id',
+        'Image'
     ];
 
-    public function guildPlayer() {
-        return $this->hasMany('App\Models\GuildPlayer','GuildId');
-    }
 }
