@@ -59,7 +59,7 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form action="{{route('guild.postAdd')}}" method="POST">
+                <form action="{{route('guild.postAdd')}}" method="POST" enctype="multipart/form-data">
                   @csrf
                   <div class="card-body">
                     <div class="form-group">
@@ -117,6 +117,11 @@
                         </div> 
                     </div>
                 
+                    <div class="form-group">
+                      <label for="image">Image <span style="color:red;">*</span></label>
+                      <input type="file" class="form-control" id="image" name="image">
+                    </div>
+
                   <!-- /.card-body -->
   
                   <div class="card-footer">

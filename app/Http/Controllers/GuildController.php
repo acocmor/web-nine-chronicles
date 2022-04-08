@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Guild;
 use App\Models\GuildPlayer;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 class GuildController extends Controller
 {
     //
@@ -60,6 +61,14 @@ class GuildController extends Controller
         $guild->Type = $request->type;
         $guild->Link = $request->link;
         $guild->Language = $request->language;
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $name = $guild->Tag.'.png';
+            $file->move("Guilds", $name);
+            //$guild->Image = "Guilds/".$name;
+        }
+
         $guild->save();
         return redirect()->back()->with('thongbao', "Thêm mới guild '".$guild->Name."' thành công!");
     }
@@ -96,6 +105,14 @@ class GuildController extends Controller
         $guild->Type = $request->type;
         $guild->Link = $request->link;
         $guild->Language = $request->language;
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $name = $guild->Tag.'.png';
+            $file->move("Guilds", $name);
+            //$guild->Image = "Guilds/".$name;
+        }
+
         $guild->update();
         return redirect()->back()->with('thongbao', "Sửa guild ".$guild->Name." thành công!");
     }
