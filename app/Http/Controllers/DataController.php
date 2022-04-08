@@ -17,7 +17,7 @@ class DataController extends Controller
 
         $version = Version::all();
         $guilds = Guild::all();
-        $guildPlayers = GuildPlayer::all();
+        $guildPlayers = GuildPlayer::where('Guild', '<>', null)->get();
         $server = Server::find(1);
         if($server == null) {
             $server = new Server;

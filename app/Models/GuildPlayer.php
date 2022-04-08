@@ -12,10 +12,5 @@ class GuildPlayer extends Model
     protected $table = 'guildplayers';
     protected $hidden = [
         'id',
-        'GuildId'
     ];
-
-    public function guild() {
-        return $this->beLongsTo('App\Models\Guild','GuildId');
-    }
 }

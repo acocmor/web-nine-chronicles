@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Guild;
+use App\Models\GuildPlayer;
 use Illuminate\Support\Facades\Hash;
 class GuildController extends Controller
 {
@@ -21,12 +22,15 @@ class GuildController extends Controller
     public function edit($id) {
         $guild = Guild::find($id);
         if($guild == null) return redirect()->back()->with('loi', "Không tìm thấy Guild này này");
-        return view('guild.edit-guild', compact('guild'));
+
+        $list = GuildPlayer::where('Guild', '=', $guild->Tag)->get();
+
+        return view('guild.edit-guild', compact('guild', 'list'));
     }
 
     public function postAdd(Request $request) {
         $this->validate($request,[
-            'tag' => 'required|digits:3|unique:guilds,Tag',
+            'tag' => 'required|min:3|max:3|unique:guilds,Tag',
             'name' => 'required|unique:guilds,Name|min:1',
             'desc' => 'required',
             'minLevel' => 'min:0|numeric',
@@ -35,7 +39,8 @@ class GuildController extends Controller
             'language' => 'required',
         ], [
             'tag.required' => 'Hãy nhập tên TAG',
-            'tag.digits' => 'Độ dài tên TAG là: 3 ký tự',
+            'tag.min' => 'Độ dài tên TAG là: 3 ký tự',
+            'tag.max' => 'Độ dài tên TAG là: 3 ký tự',
             'tag.unique' => 'Tên TAG này đã tồn tại',
             'name.unique' => 'Tên GUILD này đã tồn tại',
             'name.required' => 'Hãy nhập tên GUILD',
@@ -48,7 +53,7 @@ class GuildController extends Controller
         ]);
 
         $guild = new Guild;
-        $guild->Tag = $request->tag;
+        $guild->Tag = strtoupper($request->tag);
         $guild->Name = $request->name;
         $guild->Desc = $request->desc;
         $guild->MinLevel = $request->minLevel;
@@ -56,12 +61,12 @@ class GuildController extends Controller
         $guild->Link = $request->link;
         $guild->Language = $request->language;
         $guild->save();
-        return redirect()->route('guild.index')->with('thongbao', "Thêm mới guild '".$guild->Name."' thành công!");
+        return redirect()->back()->with('thongbao', "Thêm mới guild '".$guild->Name."' thành công!");
     }
 
     public function postEdit(Request $request, $id) {
         $this->validate($request,[
-            'tag' => 'required|digits:3|unique:guilds,Tag,'.$id,
+            'tag' => 'required|min:3|max:3|unique:guilds,Tag,'.$id,
             'name' => 'required|min:1|unique:guilds,Name,'.$id,
             'desc' => 'required',
             'minLevel' => 'min:0|numeric',
@@ -70,7 +75,8 @@ class GuildController extends Controller
             'language' => 'required',
         ], [
             'tag.required' => 'Hãy nhập tên TAG',
-            'tag.digits' => 'Độ dài tên TAG là: 3 ký tự',
+            'tag.min' => 'Độ dài tên TAG là: 3 ký tự',
+            'tag.max' => 'Độ dài tên TAG là: 3 ký tự',
             'tag.unique' => 'Tên TAG này đã tồn tại',
             'name.unique' => 'Tên GUILD này đã tồn tại',
             'name.required' => 'Hãy nhập tên GUILD',
@@ -83,15 +89,15 @@ class GuildController extends Controller
         ]);
         $guild = Guild::find($id);
         if($guild == null) return redirect()->back()->with('loi', "Không tìm thấy guild này này");
-        $guild->Tag = $request->tag;
+        $guild->Tag = strtoupper($request->tag);
         $guild->Name = $request->name;
         $guild->Desc = $request->desc;
         $guild->MinLevel = $request->minLevel;
         $guild->Type = $request->type;
         $guild->Link = $request->link;
         $guild->Language = $request->language;
-        $player->save();
-        return redirect()->back()->with('thongbao', "Sửa guild thành công!");
+        $guild->update();
+        return redirect()->back()->with('thongbao', "Sửa guild ".$guild->Name." thành công!");
     }
 
     public function delete($id) {
