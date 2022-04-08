@@ -73,6 +73,15 @@
                   </a>
                 </li>
                 <li class="nav-item">
+                  <a href="{{route('guild.index')}}" class="nav-link">
+                    <i class="nav-icon fas fa-plus"></i>
+                    <p>
+                      Danh sach Guild
+                      <span class="right badge badge-danger">New</span>
+                    </p>
+                  </a>
+                </li>
+                <li class="nav-item">
                   <a href="{{route('server')}}" class="nav-link">
                     <i class="nav-icon fas fa-plus"></i>
                     <p>

@@ -43,6 +43,8 @@
                         </div>
                     @endif
             
+                    <a href="{{route('guild.add')}}" type="button" class="btn btn-success"><i class="nav-icon fas fa-plus"></i> Thêm mới Guild</a>
+                    <hr>
                     <div class="row">
                         <div class="col-12">   
                           <div class="card">
@@ -55,13 +57,14 @@
                                 <thead>
                                 <tr>
                                   <th style="width:20px;">ID</th>
-                                  <th>Tag</th>
                                   <th>Name</th>
+                                  <th>Tag</th>
                                   <th>Desc</th>
                                   <th>MinLevel</th>
                                   <th>Type</th>
                                   <th>Link discord</th>
                                   <th>Language</th>
+                                  <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -70,10 +73,16 @@
                                     @foreach ($list as $item)
                                       <tr>
                                         <td>#{{$item->id}}</td>
-                                        <td>{{$item->Address}}</td>
+                                        <td>{{$item->Name}}</td>
+                                        <td>{{$item->Tag}}</td>
+                                        <td>{{$item->Desc}}</td>
+                                        <td>{{$item->MinLevel}}</td>
+                                        <td>{{$item->Type}}</td>
+                                        <td>{{$item->Link}}</td>
+                                        <td>{{$item->Language}}</td>
                                         <td>
-                                          <a href="{{route('edit', ['id'=>$item->id])}}" type="button" class="btn btn-block btn-warning btn-xs">View/Edit</a>
-                                          <a href="{{route('delete', ['id'=>$item->id])}}" type="button" class="btn btn-block btn-danger btn-xs" onclick="return ConfirmDelete()">Delete</a>
+                                          <a href="{{route('guild.edit', ['id'=>$item->id])}}" type="button" class="btn btn-block btn-warning btn-xs">View/Edit</a>
+                                          <a href="{{route('guild.delete', ['id'=>$item->id])}}" type="button" class="btn btn-block btn-danger btn-xs" onclick="return ConfirmDelete()">Delete</a>
                                         </td>
                                       </tr> 
                                     @endforeach 

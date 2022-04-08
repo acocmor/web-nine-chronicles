@@ -48,8 +48,8 @@ Route::prefix('/')->middleware('admin')->group(function () {
     Route::prefix('guild-player')->group(function () {
         Route::get('/', [App\Http\Controllers\GuildPlayerController::class, 'index'])->name('guildPlayer.index');
 
-        Route::get('/add', [App\Http\Controllers\GuildController::class, 'add'])->name('guildPlayer.add');
-        Route::post('/add', [App\Http\Controllers\GuildPlayerController::class, 'postAdd'])->name('guildPlayer.postAdd');
+        Route::get('/add/{id}', [App\Http\Controllers\GuildPlayerController::class, 'add'])->name('guildPlayer.add');
+        Route::post('/add/{id}', [App\Http\Controllers\GuildPlayerController::class, 'postAdd'])->name('guildPlayer.postAdd');
 
         Route::get('/edit/{id}', [App\Http\Controllers\GuildPlayerController::class, 'edit'])->name('guildPlayer.edit');
         Route::post('/edit/{id}', [App\Http\Controllers\GuildPlayerController::class, 'postEdit'])->name('guildPlayer.postEdit');
