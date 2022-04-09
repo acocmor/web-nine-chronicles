@@ -66,7 +66,7 @@ class GuildController extends Controller
             $file = $request->file('image');
             $name = $guild->Tag.'.png';
             $file->move("public/Guilds", $name);
-            $file->move("Guilds", $name);
+            //$file->copy("Guilds", $name);
             //$guild->Image = "Guilds/".$name;
         }
 
@@ -111,7 +111,7 @@ class GuildController extends Controller
             $file = $request->file('image');
             $name = $guild->Tag.'.png';
             $file->move("public/Guilds", $name);
-            $file->move("Guilds", $name);
+            //$file->copy("Guilds", $name);
             //$guild->Image = "Guilds/".$name;
         }
 
