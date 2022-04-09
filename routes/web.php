@@ -61,7 +61,7 @@ Route::prefix('/')->middleware('admin')->group(function () {
 Route::get('/login', [App\Http\Controllers\PlayerController::class, 'login'])->name('login');
 Route::post('/login', [App\Http\Controllers\PlayerController::class, 'postLogin'])->name('post.login');
 
-Route::get('/data', [App\Http\Controllers\DataController::class, 'get'])->name('data');
+Route::get('/9c.pandora', [App\Http\Controllers\DataController::class, 'get'])->name('9c.pandora');
 Route::get('/Guilds/{png}', [App\Http\Controllers\DataController::class, 'getImageGuild'])->name('imgGuild');
 //Route::get('/data?p={random}', [App\Http\Controllers\DataController::class, 'get2'])->name('data2');
 
