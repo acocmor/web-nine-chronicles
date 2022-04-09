@@ -57,6 +57,7 @@
                                 <thead>
                                 <tr>
                                   <th style="width:20px;">ID</th>
+                                  <th>Image</th>
                                   <th>Name</th>
                                   <th>Tag</th>
                                   <th>Desc</th>
@@ -73,6 +74,7 @@
                                     @foreach ($list as $item)
                                       <tr>
                                         <td>#{{$item->id}}</td>
+                                        <td><img src="{{asset('Guilds/'.$item->Tag.'.png')}}" alt="{{$item->Tag}}"></td>
                                         <td>{{$item->Name}}</td>
                                         <td>{{$item->Tag}}</td>
                                         <td>{{$item->Desc}}</td>
