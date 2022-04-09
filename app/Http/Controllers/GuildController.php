@@ -65,7 +65,7 @@ class GuildController extends Controller
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $name = $guild->Tag.'.png';
-            $file->move("Guilds", $name);
+            $file->move("public/Guilds", $name);
             //$guild->Image = "Guilds/".$name;
         }
 
@@ -109,7 +109,7 @@ class GuildController extends Controller
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $name = $guild->Tag.'.png';
-            $file->move("Guilds", $name);
+            $file->move("public/Guilds", $name);
             //$guild->Image = "Guilds/".$name;
         }
 
