@@ -36,13 +36,13 @@ class GuildPlayerController extends Controller
         $guild = Guild::find($id);
         if($guild == null) return redirect()->back()->with('loi', "Không tìm thấy Guild này");
         $this->validate($request,[
-            'address' => 'required|unique:guildPlayers,Address',
-            'avatarAddress' => 'required',
+            'address' => 'required',
+            'avatarAddress' => 'required|unique:guildPlayers,AvatarAddress',
             'rank' => 'min:0|numeric',
         ], [
             'address.required' => 'Địa nhập địa chỉ',
             'avatarAddress.required' => 'Địa nhập địa chỉ avatar',
-            'address.unique' => 'Địa chỉ này đã trong 1 guild khác',
+            'avatarAddress.unique' => 'Địa chỉ này đã trong 1 guild khác',
             'rank.min' => 'Giá trị rank nhỏ nhất: 0',
             'rank.numeric' => 'Giá trị rank sai định dạng',
         ]);
@@ -59,14 +59,14 @@ class GuildPlayerController extends Controller
     public function postEdit(Request $request, $id) {
         $this->validate($request,[
             'guild' => 'required',
-            'address' => 'required|unique:guildPlayers,Address,'.$id,
-            'avatarAddress' => 'required',
+            'address' => 'required',
+            'avatarAddress' => 'required|unique:guildPlayers,Address,'.$id,
             'rank' => 'min:0|numeric',
         ], [
             'guild.required' => 'Hãy chọn guild cho player',
             'address.required' => 'Địa nhập địa chỉ',
             'avatarAddress.required' => 'Địa nhập địa chỉ avatar',
-            'address.unique' => 'Địa chỉ này đã trong 1 guild khác',
+            'avatarAddress.unique' => 'Địa chỉ này đã trong 1 guild khác',
             'rank.min' => 'Giá trị rank nhỏ nhất: 0',
             'rank.numeric' => 'Giá trị rank sai định dạng',
         ]);
